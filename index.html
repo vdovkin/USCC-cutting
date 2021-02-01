@@ -51,21 +51,28 @@
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-6 mb-4">
                         <div class="card mt-4 bg-light h-100">
-                            <img src="static/img/cutting.jpg" alt="cutting" class="card-img-top">
-                            <h3 class="form-header card-title text-center p-2">Виберіть необхідну ширину</h3>
+                            <h3 class="form-header card-title text-center p-2">Розрахунок розкрою листа</h3>
+                            <img src="static/img/sheet.png" alt="sheet" class="card-img-top">
                             <div class="card-body text-center">
                                 <form id="mainForm">
                                     <div class="row justify-content-center mb-3">
-                                        <div class="col-6 col-md-4 my-auto text-end">
-                                            <label for="lenght" class="form-label main-label">Ширина, мм</label>
+                                        <div class="col-6 col-md-5 my-auto text-end">
+                                            <label for="width" class="form-label main-label">Ширина полоси (b), мм</label>
                                         </div>
-                                        <div class="col-6 col-md-4">
-    
+                                        <div class="col-6 col-md-5">
                                             <input type="number" class="form-control" id='width' onchange="hideResults()">
                                         </div>
                                     </div>
+                                    <div class="row justify-content-center mb-3">
+                                        <div class="col-6 col-md-5 my-auto text-end">
+                                            <label for="thickness" class="form-label main-label">Товщина листа, мм</label>
+                                        </div>
+                                        <div class="col-6 col-md-5">
+                                            <input type="number" class="form-control" id='thickness' onchange="hideResults()">
+                                        </div>
+                                    </div>
 
-                                    <div class="d-grid col-md-8 mx-auto bottom">
+                                    <div class="d-grid col-md-10 mx-auto bottom">
                                         <button class="btn btn-main" type="button"
                                             onclick="Results()">Розрахувати</button>
                                     </div>
@@ -87,11 +94,54 @@
                             <div class="card-body text-center">
                                 <div class="row mb-5">
                                     <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
-                                        <label for="parkingSpaces" class="form-label main-label">Відсоток</label>
+                                        <label for="parkingSpaces" class="form-label main-label">Прийнята ширина листа, мм</label>
                                     </div>
                                     <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
                                         <span id='parkingSpaces' class="form-control text-start">-</span>
                                     </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
+                                        <label for="parkingSpaces" class="form-label main-label">Кількість полос (n), шт</label>
+                                    </div>
+                                    <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+                                        <span id='parkingSpaces' class="form-control text-start">-</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
+                                        <label for="parkingSpaces" class="form-label main-label">Залишок &Delta;, мм</label>
+                                    </div>
+                                    <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+                                        <span id='parkingSpaces' class="form-control text-start">-</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
+                                        <label for="parkingSpaces" class="form-label main-label">Залишок, %</label>
+                                    </div>
+                                    <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+                                        <span id='parkingSpaces' class="form-control text-start">-</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
+                                        <label for="parkingSpaces" class="form-label main-label">Оптимальна ширина розкрою, мм</label>
+                                    </div>
+                                    <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+                                        <span id='parkingSpaces' class="form-control text-start">-</span>
+                                    </div>
+                                </div>    
+                                <div class="row mb-5">
+                                    <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
+                                        <label for="parkingSpaces" class="form-label main-label">Оптимальний залишок, %</label>
+                                    </div>
+                                    <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
+                                        <span id='parkingSpaces' class="form-control text-start">-</span>
+                                    </div>
+                                </div>    
+                                    
+                                   
                                 </div>
 
 
