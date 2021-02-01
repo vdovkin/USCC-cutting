@@ -57,18 +57,22 @@
                                 <form id="mainForm">
                                     <div class="row justify-content-center mb-3">
                                         <div class="col-6 col-md-5 my-auto text-end">
-                                            <label for="width" class="form-label main-label">Ширина полоси (b), мм</label>
+                                            <label for="width" class="form-label main-label">Ширина полоси (b),
+                                                мм</label>
                                         </div>
                                         <div class="col-6 col-md-5">
-                                            <input type="number" class="form-control" id='width' onchange="hideResults()">
+                                            <input type="number" class="form-control" id='width'
+                                                onchange="Redults()">
                                         </div>
                                     </div>
                                     <div class="row justify-content-center mb-3">
                                         <div class="col-6 col-md-5 my-auto text-end">
-                                            <label for="thickness" class="form-label main-label">Товщина листа, мм</label>
+                                            <label for="thickness" class="form-label main-label">Товщина листа,
+                                                мм</label>
                                         </div>
                                         <div class="col-6 col-md-5">
-                                            <input type="number" class="form-control" id='thickness' onchange="hideResults()">
+                                            <input type="number" class="form-control" id='thickness'
+                                                onchange="Redults()">
                                         </div>
                                     </div>
 
@@ -83,7 +87,7 @@
 
                     </div>
                     <!-- LOADER -->
-            
+
                     <div id="loading" class="col-12 col-lg-6 mb-4 text-center d-none">
                         <img src="static/img/loading.gif" alt="">
                     </div>
@@ -94,37 +98,40 @@
                             <div class="card-body text-center">
                                 <div class="row mb-5">
                                     <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
-                                        <label for="parkingSpaces" class="form-label main-label">Прийнята ширина листа, мм</label>
+                                        <label for="sheetWidth" class="form-label main-label">Прийнята ширина листа,
+                                            мм</label>
                                     </div>
                                     <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
-                                        <span id='parkingSpaces' class="form-control text-start">-</span>
+                                        <span id='sheetWidth' class="form-control text-start">-</span>
                                     </div>
                                 </div>
                                 <div class="row mb-5">
                                     <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
-                                        <label for="parkingSpaces" class="form-label main-label">Кількість полос (n), шт</label>
+                                        <label for="cutNumber" class="form-label main-label">Кількість полос (n),
+                                            шт</label>
                                     </div>
                                     <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
-                                        <span id='parkingSpaces' class="form-control text-start">-</span>
+                                        <span id='cutNumber' class="form-control text-start">-</span>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
-                                        <label for="parkingSpaces" class="form-label main-label">Залишок &Delta;, мм</label>
+                                        <label for="deltaMM" class="form-label main-label">Залишок &Delta;,
+                                            мм</label>
                                     </div>
                                     <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
-                                        <span id='parkingSpaces' class="form-control text-start">-</span>
+                                        <span id='deltaMM' class="form-control text-start">-</span>
                                     </div>
                                 </div>
                                 <div class="row mb-5">
                                     <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
-                                        <label for="parkingSpaces" class="form-label main-label">Залишок, %</label>
+                                        <label for="deltaRate" class="form-label main-label">Залишок, %</label>
                                     </div>
                                     <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
-                                        <span id='parkingSpaces' class="form-control text-start">-</span>
+                                        <span id='deltaRate' class="form-control text-start">-</span>
                                     </div>
                                 </div>
-                                <div class="row mb-5">
+                                <!-- <div class="row mb-5">
                                     <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
                                         <label for="parkingSpaces" class="form-label main-label">Оптимальна ширина розкрою, мм</label>
                                     </div>
@@ -139,18 +146,17 @@
                                     <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
                                         <span id='parkingSpaces' class="form-control text-start">-</span>
                                     </div>
-                                </div>    
-                                    
-                                   
-                                </div>
+                                </div>     -->
 
 
                             </div>
-                        </div>
 
+
+                        </div>
                     </div>
 
                 </div>
+
             </div>
         </main>
     </div>
