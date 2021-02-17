@@ -57,22 +57,35 @@
                                 <form id="mainForm">
                                     <div class="row justify-content-center mb-3">
                                         <div class="col-6 col-md-5 my-auto text-end">
+                                            <label for="thickness" class="form-label main-label">Товщина листа (t),
+                                                мм</label>
+                                        </div>
+                                        <div class="col-6 col-md-5">
+                                            <select name="thickness" id="thickness" class="form-select" onchange="availableWidth()">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row justify-content-center mb-3">
+                                        <div class="col-6 col-md-5 my-auto text-end">
+                                            <label for="sheetWidth" class="form-label main-label">Ширина листа (B),
+                                                мм</label>
+                                        </div>
+                                        <div class="col-6 col-md-5">
+                                            <select name="sheetWidth" id="sheetWidth" class="form-select">
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-center mb-3">
+                                        <div class="col-6 col-md-5 my-auto text-end">
                                             <label for="width" class="form-label main-label">Ширина полоси (b),
                                                 мм</label>
                                         </div>
                                         <div class="col-6 col-md-5">
                                             <input type="number" class="form-control" id='width'
-                                                onchange="Redults()">
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-center mb-3">
-                                        <div class="col-6 col-md-5 my-auto text-end">
-                                            <label for="thickness" class="form-label main-label">Товщина листа,
-                                                мм</label>
-                                        </div>
-                                        <div class="col-6 col-md-5">
-                                            <input type="number" class="form-control" id='thickness'
-                                                onchange="Redults()">
+                                                onchange="Results()">
                                         </div>
                                     </div>
 
@@ -97,40 +110,16 @@
                             <h3 class="results-header card-title text-center p-2">Обраховані показники</h3>
                             <div class="card-body text-center">
                                 <div class="row mb-5">
-                                    <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
-                                        <label for="sheetWidth" class="form-label main-label">Прийнята ширина листа,
-                                            мм</label>
-                                    </div>
-                                    <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
-                                        <span id='sheetWidth' class="form-control text-start">-</span>
-                                    </div>
-                                </div>
-                                <div class="row mb-5">
-                                    <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
-                                        <label for="cutNumber" class="form-label main-label">Кількість полос (n),
-                                            шт</label>
-                                    </div>
-                                    <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
-                                        <span id='cutNumber' class="form-control text-start">-</span>
+                                    <div class="col-6 col-lg-7 col-xl-6 m-auto">
+                                        <h4 class="mb-2 text-secondary">Кількість полос:</h4>
+                                        <h3 class="main-label mb-5"><span id='cutNumber'>-</span> шт.</h3>
+
+                                        <h4 class="mb-2 text-secondary">Залишок &Delta;:</h4>
+                                        <h3 class="main-label mb-5"><span id='deltaMM'>-</span> мм. (<span id='deltaRate'>-</span> %) </h3>
                                     </div>
                                 </div>
-                                <div class="row mb-2">
-                                    <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
-                                        <label for="deltaMM" class="form-label main-label">Залишок &Delta;,
-                                            мм</label>
-                                    </div>
-                                    <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
-                                        <span id='deltaMM' class="form-control text-start">-</span>
-                                    </div>
-                                </div>
-                                <div class="row mb-5">
-                                    <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
-                                        <label for="deltaRate" class="form-label main-label">Залишок, %</label>
-                                    </div>
-                                    <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
-                                        <span id='deltaRate' class="form-control text-start">-</span>
-                                    </div>
-                                </div>
+
+
                                 <!-- <div class="row mb-5">
                                     <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
                                         <label for="parkingSpaces" class="form-label main-label">Оптимальна ширина розкрою, мм</label>

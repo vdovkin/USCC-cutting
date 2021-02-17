@@ -1,6 +1,40 @@
-const SHEET_1 = 2000;
-const SHEET_2 = 1500;
+const SHEETS = {
+  4: [1500],
+  5: [1500],
+  6: [1500],
+  8: [1500, 2000],
+  10: [1500, 2000],
+  12: [1500, 2000],
+  14: [1500, 2000],
+  16: [1500, 2000],
+  18: [2000],
+  20: [1500, 2000],
+  25: [1500, 2000],
+  30: [1500, 2000],
+  40: [2000],
+}
 
+
+// Show thickness
+function showThickness(){
+  // let thicknessSelect = document.getElementById('thickness');
+  let thicknessSelect;
+  for (t in SHEETS){
+    thicknessSelect += `<option value='${t}'>${t}</option>`;
+  }
+  document.getElementById('thickness').innerHTML = thicknessSelect;
+
+}
+
+// Show available Width
+function availableWidth(){
+  let sheetWidthArray = SHEETS[document.getElementById('thickness').value];
+  let sheetWidth;
+  for (w of sheetWidthArray){
+    sheetWidth += `<option value='${w}'>${w}</option>`;
+  }
+  document.getElementById('sheetWidth').innerHTML = sheetWidth;
+}
 
 // Show card with Results
 function Results() {
@@ -36,10 +70,16 @@ function numberWithSpaces(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
+function numberWithComa(x) {
+  return x.toString().replace('.', ",");
+}
+
 
 function CalculateCutting(){
-  const width = parseInt(document.getElementById("width").value);
-  const thickness = parseInt(document.getElementById("thickness").value);
+  let width = parseInt(document.getElementById("width").value);
+  let thickness = parseInt(document.getElementById("thickness").value);
+  let sheetWidth = parseInt(document.getElementById("sheetWidth").value);
+
   if (!(width && thickness)){
     return false;
   } else if (width < 5 || width > 1995) {
@@ -48,8 +88,7 @@ function CalculateCutting(){
     return false;
   } else {
 
-    let widthNew1 = SHEET_1 - 5;
-    let widthNew2 = SHEET_2 - 5;
+    let widthNew = sheetWidth - 5;
     let cut = 0;
 
     if (thickness <= 6) {
@@ -62,38 +101,18 @@ function CalculateCutting(){
       cut = 4;
     }
 
-    let n1 = Math.floor(widthNew1 / width);
-    let n2 = Math.floor(widthNew2 / width);
+    let n = Math.floor(widthNew / width);
 
-    let delta1 = widthNew1 - n1 * width;
-    let delta2 = widthNew2 - n2 * width;
+    let delta = widthNew - n * width;
 
-    let n;
-    let delta;
-    let sheetWidth;
-
-    if (delta1 < delta2){
-      n = n1;
-      delta = delta1;
-      sheetWidth = SHEET_1;
-    } else {
-      n = n2;
-      delta = delta2;
-      sheetWidth = SHEET_2;
-    }
-
-
-  document.getElementById("sheetWidth").innerText = numberWithSpaces(
-    sheetWidth
-  );
   document.getElementById("cutNumber").innerText = numberWithSpaces(
     n
   );
   document.getElementById("deltaMM").innerText = numberWithSpaces(
     delta
   );
-  document.getElementById("deltaRate").innerText = numberWithSpaces(
-    Math.round(delta/(sheetWidth - 5)*100)
+  document.getElementById("deltaRate").innerText = numberWithComa(
+    Math.round(delta/(sheetWidth - 5)*100 * 10 + Number.EPSILON ) / 10
   );
 
 
@@ -102,3 +121,5 @@ function CalculateCutting(){
 }
 
 
+showThickness();
+availableWidth();
