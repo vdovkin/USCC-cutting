@@ -89,21 +89,15 @@ function CalculateCutting(){
   } else {
 
     let widthNew = sheetWidth - 5;
-    let cut = 0;
+    let cut = 2;
 
-    if (thickness <= 6) {
-      cut = 1;
-    } else if (thickness <= 12 ){
-      cut = 2;
-    } else if (thickness <= 20 ){
+    if (thickness > 12) {
       cut = 3;
-    } else {
-      cut = 4;
     }
 
-    let n = Math.floor(widthNew / width);
+    let n = Math.floor(widthNew / (width + cut));
 
-    let delta = widthNew - n * width;
+    let delta = widthNew - n * width - (n - 1) * cut;
 
   document.getElementById("cutNumber").innerText = numberWithSpaces(
     n
