@@ -1,242 +1,384 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Калькулятор розкрою - УЦСБ</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ефективний розкрій листа</title>
 
-    <!-- favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="static/img/favicon.png" />
-
-    <!-- font awesome -->
-    <script src="https://kit.fontawesome.com/5de3e67cfc.js" crossorigin="anonymous"></script>
-
-    <!-- bootstrap css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <!-- Custom css -->
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/style-base.css" />
+    <link rel="stylesheet" href="static/css/style.css" />
 </head>
 
 <body>
-    <div class="content">
-        <nav class="navbar  navbar-expand-md navbar-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img src="static/img/logo.png">
-                    <span class="ps-2">Розрахунок розкрою</span>
-
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
-                    aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarToggle">
-                    <div class="navbar-nav ms-auto">
-                        <a class="nav-item nav-link" href="https://uscc.ua/">Перейти на сайт УЦСБ</a>
+    <header class="header fix">
+        <div class="left">
+            <div class="search">
+                <form action="http://uscc.ua/search/index">
+                    <div class="btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas"
+                            data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img"
+                            viewBox="0 0 512 512">
+                            <path fill="white"
+                                d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                            </path>
+                        </svg>
+                        <input class="btn" type="submit" value="" />
                     </div>
-                </div>
+                    <input name="q" class="input" type="text" placeholder="Пошук" />
+                </form>
             </div>
-
-        </nav>
-
-        <main class="pb-4">
-            <div class="container mb-4">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-6 mb-4">
-                        <div class="card mt-4 bg-light h-100">
-                            <h3 class="form-header card-title text-center p-2">Розрахунок розкрою листа</h3>
-                            <img src="static/img/sheet.png" alt="sheet" class="card-img-top">
-                            <div class="card-body text-center">
-                                <form id="mainForm">
-                                    <div class="row justify-content-center mb-3">
-                                        <div class="col-6 col-md-5 my-auto text-end">
-                                            <label for="thickness" class="form-label main-label">Товщина листа (t),
-                                                мм</label>
-                                        </div>
-                                        <div class="col-6 col-md-5">
-                                            <select name="thickness" id="thickness" class="form-select" onchange="availableWidth()">
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row justify-content-center mb-3">
-                                        <div class="col-6 col-md-5 my-auto text-end">
-                                            <label for="sheetWidth" class="form-label main-label">Ширина листа (B),
-                                                мм</label>
-                                        </div>
-                                        <div class="col-6 col-md-5">
-                                            <select name="sheetWidth" id="sheetWidth" class="form-select">
-
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row justify-content-center mb-3">
-                                        <div class="col-6 col-md-5 my-auto text-end">
-                                            <label for="width" class="form-label main-label">Ширина полоси (b),
-                                                мм</label>
-                                        </div>
-                                        <div class="col-6 col-md-5">
-                                            <input type="number" class="form-control" id='width'
-                                                onchange="Results()">
-                                        </div>
-                                    </div>
-
-                                    <div class="d-grid col-md-10 mx-auto bottom">
-                                        <button class="btn btn-main" type="button"
-                                            onclick="Results()">Розрахувати</button>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- LOADER -->
-
-                    <div id="loading" class="col-12 col-lg-6 mb-4 text-center d-none">
-                        <img src="static/img/loading.gif" alt="">
-                    </div>
-
-                    <div class="col-12 col-lg-6 mb-4 d-none" id='results'>
-                        <div class="card mt-4 bg-light h-100">
-                            <h3 class="results-header card-title text-center p-2">Обраховані показники</h3>
-                            <div class="card-body text-center">
-                                <div class="row mb-5">
-                                    <div class="col-6 col-lg-7 col-xl-6 m-auto">
-                                        <h4 class="mb-2 text-secondary">Кількість полос:</h4>
-                                        <h3 class="main-label mb-5"><span id='cutNumber'>-</span> шт.</h3>
-
-                                        <h4 class="mb-2 text-secondary">Залишок &Delta;:</h4>
-                                        <h3 class="main-label mb-5"><span id='deltaMM'>-</span> мм. (<span id='deltaRate'>-</span> %) </h3>
-                                    </div>
-                                </div>
-
-
-                                <!-- <div class="row mb-5">
-                                    <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
-                                        <label for="parkingSpaces" class="form-label main-label">Оптимальна ширина розкрою, мм</label>
-                                    </div>
-                                    <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
-                                        <span id='parkingSpaces' class="form-control text-start">-</span>
-                                    </div>
-                                </div>    
-                                <div class="row mb-5">
-                                    <div class="col-6 col-lg-7 col-xl-6 my-auto text-end">
-                                        <label for="parkingSpaces" class="form-label main-label">Оптимальний залишок, %</label>
-                                    </div>
-                                    <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
-                                        <span id='parkingSpaces' class="form-control text-start">-</span>
-                                    </div>
-                                </div>     -->
-
-
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </main>
-    </div>
-
-    <footer class="footer">
-        <!-- Footer Links -->
-        <div class="container">
-            <div class="row ps-5">
-                <div class="col-md-5 cont">
-                    <div class="footer_contact_block_inner">
-                        <div class="text_with_icons">
-                            <p><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt"
-                                    class="svg-inline--fa fa-map-marker-alt fa-w-12" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                                    <path fill="currentColor"
-                                        d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z">
-                                    </path>
-                                </svg>Україна, 01015, м Київ, вул. Лейпцизька, 15-А, БЦ Меркс, <br>(в'їзд з вул.
-                                Старонаводницька)</p>
-                        </div>
-                        <div class="text_with_icons">
-                            <p><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
-                                    data-prefix="fas" data-icon="phone-alt" class="svg-inline--fa fa-phone-alt fa-w-16"
-                                    role="img" viewBox="0 0 512 512">
-                                    <path fill="currentColor"
-                                        d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z">
-                                    </path>
-                                </svg><a href="tel:+38-044-280-18-20">+38-044-465-76-39, +38-097-357-23-39</a></p>
-                        </div>
-                        <div class="text_with_icons">
-                            <p><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
-                                    data-prefix="far" data-icon="envelope" class="svg-inline--fa fa-envelope fa-w-16"
-                                    role="img" viewBox="0 0 512 512">
-                                    <path fill="currentColor"
-                                        d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z">
-                                    </path>
-                                </svg><a href="mailto:info@uscc.ua">info@uscc.ua</a></p>
-                        </div>
-                        <div>
-                            <p>Ассоціація УЦСБ, 2020<br>СТАЛЬ. ПРАВИЛЬНИЙ ВИБІР</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Grid column -->
-                <div class="col-md-2 footer-links d-none d-md-block">
-
-                    <ul>
-                        <li><a href="index.html">Головна</a></li>
-                        <li><a href="settings.html">Налаштування</a></li>
-                    </ul>
-                </div>
-                <!-- Grid column -->
-                <div class="col-md-2 footer-links d-none d-md-block">
-
-                    <ul>
-                        <li><a href="http://uscc.ua/kontaktu">Контакти УЦСБ</a></li>
-                        <li><a href="https://uscc.ua/">Сайт УЦСБ</a></li>
-                    </ul>
-                </div>
-                <!-- Grid column -->
-                <div class="col-md-3">
-                    <div class="socials">
-                        <div class="footer-lang-view" id="language-menu">
-                            <ul>
-                                <li><a href="#" class="selected-lan">ua</a></li>
-                                <li><a href="#">ru</a></li>
-                                <li><a href="#">en</a></li>
-                            </ul>
-                        </div>
-                        <div class="icons">
-                            <a href="https://www.youtube.com/channel/UCjLA-d50zc_8I665CgALoQg">
-                                <i class="fab fa-youtube fa-2x icons"></i>
-                            </a>
-                            <a href="https://www.facebook.com/UkrainianSteelConstructionCenter/">
-                                <i class="fab fa-facebook-f fa-2x icons"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Grid column -->
-            </div>
-            <!-- Grid row -->
+            <a href="http://uscc.ua/" class="logo">
+                <img src="static/img/logo_ukr.png" alt="logo" />
+            </a>
         </div>
-        <!-- Footer Links -->
-    </footer>
+
+        <div class="right">
+            <div class="menu-container">
+                <ul>
+                    <li data-menu="199">
+                        <a href="http://uscc.ua/customer" class="">ЗАМОВНИКАМ</a>
+                    </li>
+                    <li data-menu="209">
+                        <a href="http://uscc.ua/architect" class="">АРХІТЕКТОРАМ</a>
+                    </li>
+                    <li data-menu="208">
+                        <a href="http://uscc.ua/engineer" class="">ПРОЕКТУВАЛЬНИКАМ</a>
+                    </li>
+                    <li>
+                        <a class="" href="http://uscc.ua/avtorizacia-uchasnuka">УЧАСНИКАМ</a>
+                    </li>
+                </ul>
+            </div>
+            <!--    Start lang-->
+
+            <!--    End lang-->
+        </div>
+        <div class="menu-btn">
+            <p>МЕНЮ</p>
+        </div>
+    </header>
+    <section class="block_header long toppadding">
+        <div class="container-100">
+            <div class="breadcrumbs">
+                <a href="http://uscc.ua/">Головна</a>
+                <span>/</span>
+                <p>Ефективний розкрій листа</p>
+            </div>
+        </div>
+        <div class="container-100">
+            <div class="text-information">
+                <div class="title-block">
+                    <h1>Ефективний розкрій листа</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="acc_and_filtr">
+        <!--    Если не нужен заголовок то удалить весь блок title-full    -->
+        <!--    До этого момента    -->
+        <div class="container-100">
+            <div class="archi_form_container">
+                <div class="archi_form_main_container">
+                    <form action="" method="POST">
+                        <input type="hidden" name="architec_get_calculate" value="1">
+                        <div class="formtitle">
+                            <h3>Виберіть товщину листі</h3>
+                        </div>
+                        <div class="custom-select select-box input-box field-subscriber-category home-page-category-select"
+                            id="architec_select_colunm_formats">
+                            <label for=""></label>
+                            <select id="grid" name="grid" onchange="alert('dddddddd');">
+                                <option value="1" disabled="">Виберіть</option>
+                                <option value="4">4</option>
+                            </select>
+
+                            <div class="select-selected">6 х 6</div>
+                            <div class="select-items select-hide">
+                                <div>6 х 6</div>
+                                <div>8,4 х 8,4</div>
+                                <div>9 х 6</div>
+                                <div>9 х 9</div>
+                                <div>12 х 6</div>
+                                <div>15 x 5,5</div>
+                                <div>16,8 х 8,4</div>
+                                <div>18 х 6</div>
+                            </div>
+                        </div>
+                        <div class="architeck_calculator_checkbox">
+                            <div class="consult_form_chackbox_container check-box">
+                                <input type="checkbox" name="set_custom_net" id="stal_prokat_checkbox_architec"
+                                    value="1">
+                                <label for="stal_prokat_checkbox_architec">Задати свою сітку колон</label>
+                            </div>
+                        </div>
+                        <div class="architec_input_sizes_container">
+                            <div class="formtitle">
+                                <h3>Виберіть довжину (L),м</h3>
+                            </div>
+                            <!--                            <label for="">Довжина (L),м</label>-->
+                            <input type="number" min="3" max="24" step="0.01" class="architec_input_sizes"
+                                name="column_l" placeholder="від 3 до 24" value="">
+                        </div>
+                        <div class="architec_input_sizes_container">
+                            <div class="formtitle">
+                                <h3>Виберіть ширину (В), м</h3>
+                            </div>
+                            <!--                            <label for="">Ширина (В), м</label>-->
+                            <input type="number" min="3" max="24" step="0.01" class="architec_input_sizes"
+                                name="column_b" placeholder="від 3 до 24" value="">
+                        </div>
+                        <div class="formtitle">
+                            <h3>Виберіть навантаження за типом будівлі</h3>
+                        </div>
+                        <div
+                            class="custom-select select-box input-box field-subscriber-category home-page-category-select">
+                            <!--                            <label>Навантаження за типом будівлі</label>-->
+                            <select id="load1" name="load1">
+                                <option value="1" disabled="">Виберіть</option>
+                                <option value="150">Квартири житлових будинків – 150 кг/м2</option>
+                                <option value="200">Адміністративні, офіси (200 кг/м2)</option>
+                                <option value="300">Кафе, ресторани (300 кг/м2)</option>
+                                <option value="350">Паркінги (350 кг/м2)</option>
+                                <option value="400">ТРЦ, Офіси классу А (400 кг/м2)</option>
+                                <option value="500">Видовищні установи, книгосховища, архіви (500 кг/м2)</option>
+                                <!--                                <option value="200" -->
+                                <!---->--&gt;
+                                <!--                                    Адміністративні, офіси (200 кг/м2)-->
+                                <!--                                </option>-->
+                                <!--                                <option value="300" -->
+                                <!---->--&gt;
+                                <!--                                    Кафе, ресторани (300 кг/м2)-->
+                                <!--                                </option>-->
+                                <!--                                <option value="350" -->
+                                <!---->Паркінги (350 кг/м2)--&gt;
+                                <!--                                <option value="400" -->
+                                <!---->--&gt;
+                                <!--                                    ТРЦ, Офіси классу А (400 кг/м2)-->
+                                <!--                                </option>-->
+                                <!--                                <option value="500" -->
+                                <!---->--&gt;
+                                <!--                                    Видовищні установи, книгосховища, архіви (500-->
+                                <!--                                    кг/м2)-->
+                                <!--                                </option>-->
+                            </select>
+                            <div class="select-selected">Квартири житлових будинків – 150 кг/м2</div>
+                            <div class="select-items select-hide">
+                                <div>Квартири житлових будинків – 150 кг/м2</div>
+                                <div>Адміністративні, офіси (200 кг/м2)</div>
+                                <div>Кафе, ресторани (300 кг/м2)</div>
+                                <div>Паркінги (350 кг/м2)</div>
+                                <div>ТРЦ, Офіси классу А (400 кг/м2)</div>
+                                <div>Видовищні установи, книгосховища, архіви (500 кг/м2)</div>
+                            </div>
+                        </div>
+                        <div class="formtitle">
+                            <h3> Виберіть тип чистової підлоги</h3>
+                        </div>
+                        <div
+                            class="custom-select select-box input-box field-subscriber-category home-page-category-select">
+                            <!--                            <label>Тип чистової підлоги</label>-->
+                            <select id="load2" name="load2">
+                                <option value="1" disabled="">Виберіть</option>
+                                <option value="5">Топінг бетонної підлоги(5 кг/м2)</option>
+                                <option value="50">Фальш-підлога (50 кг/м2)</option>
+                                <option value="60">Керамічна плитка на клею (60 кг/м2)</option>
+                                <option value="70">Лінолеум поверх цементно-піщаної стяжки (70 кг/м2)</option>
+                                <option value="90">Керамогранітна плитка поверх цементно-піщаної стяжки (90 кг/м2)
+                                </option>
+                                <!--                                <option value="90" -->
+                                <!---->--&gt;
+                                <!--                                    Керамогранітна плитка поверх цементно-піщаної стяжки (90 кг/м2)-->
+                                <!--                                </option>-->
+                                <!--                                <option value="70" -->
+                                <!---->--&gt;
+                                <!--                                    Лінолеум поверх цементно-піщаної стяжки (70 кг/м2)-->
+                                <!--                                </option>-->
+                                <!--                                <option value="60" -->
+                                <!---->--&gt;
+                                <!--                                    Керамічна плитка на клею (60 кг/м2)-->
+                                <!--                                </option>-->
+                                <!--                                <option value="50" -->
+                                <!---->Фальш-підлога (50 кг/м2)--&gt;
+                                <!--                                <option value="5" -->
+                                <!---->--&gt;
+                                <!--                                    Топінг бетонної підлоги(5 кг/м2)-->
+                                <!--                                </option>-->
+                            </select>
+                            <div class="select-selected">Топінг бетонної підлоги(5 кг/м2)</div>
+                            <div class="select-items select-hide">
+                                <div>Топінг бетонної підлоги(5 кг/м2)</div>
+                                <div>Фальш-підлога (50 кг/м2)</div>
+                                <div>Керамічна плитка на клею (60 кг/м2)</div>
+                                <div>Лінолеум поверх цементно-піщаної стяжки (70 кг/м2)</div>
+                                <div>Керамогранітна плитка поверх цементно-піщаної стяжки (90 кг/м2)</div>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn-orange" value="Підібрати">
+                    </form>
+                </div>
+
+            </div>
+            <div class="template_4_table">
+
+                <div class="scroll-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="thead">Ефективна ширина полоси, мм</th>
+                                <th class="thead">Ширина листа, мм</th>
+                                <th class="thead">Кількість полос, шт</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>990</td>
+                                <td>2000</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>740</td>
+                                <td>1500</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>658</td>
+                                <td>2000</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>494</td>
+                                <td>1500 / 2000</td>
+                                <td>3 / 4</td>
+                            </tr>
+                            <tr>
+                                <td>394</td>
+                                <td>2000</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>368</td>
+                                <td>1500</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>328</td>
+                                <td>2000</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>294</td>
+                                <td>1500</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>280</td>
+                                <td>2000</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>246</td>
+                                <td>1500 / 2000</td>
+                                <td>6 / 8</td>
+                            </tr>
+                            <tr>
+                                <td>218</td>
+                                <td>2000</td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>210</td>
+                                <td>1500</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>196</td>
+                                <td>2000</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>182</td>
+                                <td>1500</td>
+                                <td>8</td>
+                            </tr>
+                            <tr>
+                                <td>178</td>
+                                <td>2000</td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>162</td>
+                                <td>1500 / 2000</td>
+                                <td>9 / 12</td>
+                            </tr>
+                            <tr>
+                                <td>150</td>
+                                <td>2000</td>
+                                <td>13</td>
+                            </tr>
+                            <tr>
+                                <td>146</td>
+                                <td>1500/td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>140</td>
+                                <td>2000</td>
+                                <td>14</td>
+                            </tr>
+                            <tr>
+                                <td>132</td>
+                                <td>1500</td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>130</td>
+                                <td>2000</td>
+                                <td>15</td>
+                            </tr>
+                            <tr>
+                                <td>122</td>
+                                <td>1500 / 2000</td>
+                                <td>12 / 16</td>
+                            </tr>
+                            <tr>
+                                <td>114</td>
+                                <td>2000</td>
+                                <td>17</td>
+                            </tr>
+                            <tr>
+                                <td>112</td>
+                                <td>1500</td>
+                                <td>13</td>
+                            </tr>
+                            <tr>
+                                <td>108</td>
+                                <td>2000</td>
+                                <td>18</td>
+                            </tr>
 
 
 
-    <!-- bootstrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
-    <!-- custom js -->
-    <script src="static/js/main.js"></script>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="txt-content">
+
+                    <p>· Оптимальные характеристики профилей при расчете на устойчивость, сгибание, кручение;</p>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
 </body>
+
+<script src="static/js/main.js"></script>
+
+</html>
