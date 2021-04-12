@@ -83,147 +83,74 @@
         <!--    Если не нужен заголовок то удалить весь блок title-full    -->
         <!--    До этого момента    -->
         <div class="container-100">
-            <div class="archi_form_container">
-                <div class="archi_form_main_container">
-                    <form action="" method="POST">
-                        <input type="hidden" name="architec_get_calculate" value="1">
+            
+                <div class="form_container">
+                    <form id="form">
                         <div class="formtitle">
-                            <h3>Виберіть товщину листі</h3>
+                            <h3>Виберіть товщину листа, мм</h3>
                         </div>
-                        <div class="custom-select select-box input-box field-subscriber-category home-page-category-select"
-                            id="architec_select_colunm_formats">
-                            <label for=""></label>
-                            <select id="grid" name="grid" onchange="alert('dddddddd');">
-                                <option value="1" disabled="">Виберіть</option>
-                                <option value="4">4</option>
+                        <div class="select-area">
+                            <select name="thickness" id="thickness" class="select" onchange="availableWidth()">
                             </select>
-
-                            <div class="select-selected">6 х 6</div>
-                            <div class="select-items select-hide">
-                                <div>6 х 6</div>
-                                <div>8,4 х 8,4</div>
-                                <div>9 х 6</div>
-                                <div>9 х 9</div>
-                                <div>12 х 6</div>
-                                <div>15 x 5,5</div>
-                                <div>16,8 х 8,4</div>
-                                <div>18 х 6</div>
-                            </div>
-                        </div>
-                        <div class="architeck_calculator_checkbox">
-                            <div class="consult_form_chackbox_container check-box">
-                                <input type="checkbox" name="set_custom_net" id="stal_prokat_checkbox_architec"
-                                    value="1">
-                                <label for="stal_prokat_checkbox_architec">Задати свою сітку колон</label>
-                            </div>
-                        </div>
-                        <div class="architec_input_sizes_container">
-                            <div class="formtitle">
-                                <h3>Виберіть довжину (L),м</h3>
-                            </div>
-                            <!--                            <label for="">Довжина (L),м</label>-->
-                            <input type="number" min="3" max="24" step="0.01" class="architec_input_sizes"
-                                name="column_l" placeholder="від 3 до 24" value="">
-                        </div>
-                        <div class="architec_input_sizes_container">
-                            <div class="formtitle">
-                                <h3>Виберіть ширину (В), м</h3>
-                            </div>
-                            <!--                            <label for="">Ширина (В), м</label>-->
-                            <input type="number" min="3" max="24" step="0.01" class="architec_input_sizes"
-                                name="column_b" placeholder="від 3 до 24" value="">
                         </div>
                         <div class="formtitle">
-                            <h3>Виберіть навантаження за типом будівлі</h3>
+                            <h3>Ширина листа, мм</h3>
                         </div>
-                        <div
-                            class="custom-select select-box input-box field-subscriber-category home-page-category-select">
-                            <!--                            <label>Навантаження за типом будівлі</label>-->
-                            <select id="load1" name="load1">
-                                <option value="1" disabled="">Виберіть</option>
-                                <option value="150">Квартири житлових будинків – 150 кг/м2</option>
-                                <option value="200">Адміністративні, офіси (200 кг/м2)</option>
-                                <option value="300">Кафе, ресторани (300 кг/м2)</option>
-                                <option value="350">Паркінги (350 кг/м2)</option>
-                                <option value="400">ТРЦ, Офіси классу А (400 кг/м2)</option>
-                                <option value="500">Видовищні установи, книгосховища, архіви (500 кг/м2)</option>
-                                <!--                                <option value="200" -->
-                                <!---->--&gt;
-                                <!--                                    Адміністративні, офіси (200 кг/м2)-->
-                                <!--                                </option>-->
-                                <!--                                <option value="300" -->
-                                <!---->--&gt;
-                                <!--                                    Кафе, ресторани (300 кг/м2)-->
-                                <!--                                </option>-->
-                                <!--                                <option value="350" -->
-                                <!---->Паркінги (350 кг/м2)--&gt;
-                                <!--                                <option value="400" -->
-                                <!---->--&gt;
-                                <!--                                    ТРЦ, Офіси классу А (400 кг/м2)-->
-                                <!--                                </option>-->
-                                <!--                                <option value="500" -->
-                                <!---->--&gt;
-                                <!--                                    Видовищні установи, книгосховища, архіви (500-->
-                                <!--                                    кг/м2)-->
-                                <!--                                </option>-->
-                            </select>
-                            <div class="select-selected">Квартири житлових будинків – 150 кг/м2</div>
-                            <div class="select-items select-hide">
-                                <div>Квартири житлових будинків – 150 кг/м2</div>
-                                <div>Адміністративні, офіси (200 кг/м2)</div>
-                                <div>Кафе, ресторани (300 кг/м2)</div>
-                                <div>Паркінги (350 кг/м2)</div>
-                                <div>ТРЦ, Офіси классу А (400 кг/м2)</div>
-                                <div>Видовищні установи, книгосховища, архіви (500 кг/м2)</div>
-                            </div>
+                        <div class="select-area" id="sheetWidth">
+                        </div>
+                        <div class="consult_form_chackbox_container check-box check-cutting">
+                            <input type="checkbox" name="set_custom_cutting" id="cutting" value="1" onchange="showCutOptions()">
+                            <label for="cutting">Змінити параметри різу</label>
+                        </div>
+                        <div class="formtitle hide" id='tor-title'>
+                            <h3>Відхід на торцювання (з кожної сторони), мм</h3>
+                        </div>
+                        <div class="select-area hide">
+                                <input type="number" class="form-control" id='tor' min="0" max="15" step='1'  value="5"
+                                                onchange="hideResults()">
+                            
+                        </div>
+                        <div class="formtitle hide" id='riz-title'>
+                            <h3>Ширина різу, мм</h3>
+                        </div>
+                        <div class="select-area hide">
+                                <input type="number" class="form-control" id='riz' min="0" max="10" step='1' value="2"
+                                                onchange="hideResults()">
+                            
                         </div>
                         <div class="formtitle">
-                            <h3> Виберіть тип чистової підлоги</h3>
+                            <h3>Введіть ширину полоси, мм</h3>
                         </div>
-                        <div
-                            class="custom-select select-box input-box field-subscriber-category home-page-category-select">
-                            <!--                            <label>Тип чистової підлоги</label>-->
-                            <select id="load2" name="load2">
-                                <option value="1" disabled="">Виберіть</option>
-                                <option value="5">Топінг бетонної підлоги(5 кг/м2)</option>
-                                <option value="50">Фальш-підлога (50 кг/м2)</option>
-                                <option value="60">Керамічна плитка на клею (60 кг/м2)</option>
-                                <option value="70">Лінолеум поверх цементно-піщаної стяжки (70 кг/м2)</option>
-                                <option value="90">Керамогранітна плитка поверх цементно-піщаної стяжки (90 кг/м2)
-                                </option>
-                                <!--                                <option value="90" -->
-                                <!---->--&gt;
-                                <!--                                    Керамогранітна плитка поверх цементно-піщаної стяжки (90 кг/м2)-->
-                                <!--                                </option>-->
-                                <!--                                <option value="70" -->
-                                <!---->--&gt;
-                                <!--                                    Лінолеум поверх цементно-піщаної стяжки (70 кг/м2)-->
-                                <!--                                </option>-->
-                                <!--                                <option value="60" -->
-                                <!---->--&gt;
-                                <!--                                    Керамічна плитка на клею (60 кг/м2)-->
-                                <!--                                </option>-->
-                                <!--                                <option value="50" -->
-                                <!---->Фальш-підлога (50 кг/м2)--&gt;
-                                <!--                                <option value="5" -->
-                                <!---->--&gt;
-                                <!--                                    Топінг бетонної підлоги(5 кг/м2)-->
-                                <!--                                </option>-->
-                            </select>
-                            <div class="select-selected">Топінг бетонної підлоги(5 кг/м2)</div>
-                            <div class="select-items select-hide">
-                                <div>Топінг бетонної підлоги(5 кг/м2)</div>
-                                <div>Фальш-підлога (50 кг/м2)</div>
-                                <div>Керамічна плитка на клею (60 кг/м2)</div>
-                                <div>Лінолеум поверх цементно-піщаної стяжки (70 кг/м2)</div>
-                                <div>Керамогранітна плитка поверх цементно-піщаної стяжки (90 кг/м2)</div>
-                            </div>
+                        <div class="select-area">
+                                <input type="number" class="form-control" id='width' min="50" max="1000" step='1' placeholder="від 50 до 1000"
+                                required      onchange="hideResults()">
+                            
                         </div>
-                        <input type="submit" class="btn-orange" value="Підібрати">
+                        <input type="submit" class="btn-orange" value="Розрахувати відхід">
                     </form>
+
+                    <div class="results hide" id='results'>
+                        <div class="formtitle-results">
+                            <h3>Результати розрахунку</h3>
+                        </div>
+                        <div class="formtitle">
+                            <h3>Відхід</h3>
+                        </div>
+                        <div class="select-area">
+                            <p id='waste'>3234</p>
+                        </div>
+                        <div class="formtitle">
+                            <h3>Кількість полос, шт</h3>
+                        </div>
+                        <div class="select-area">
+                            <p id='numberOfStrips'>23424</p>
+                        </div>
+                    </div>
                 </div>
 
-            </div>
+                
+
+            
             <div class="template_4_table">
 
                 <div class="scroll-table">
@@ -324,7 +251,7 @@
                             </tr>
                             <tr>
                                 <td>146</td>
-                                <td>1500/td>
+                                <td>1500</td>
                                 <td>10</td>
                             </tr>
                             <tr>
@@ -370,7 +297,7 @@
                 </div>
                 <div class="txt-content">
 
-                    <p>· Оптимальные характеристики профилей при расчете на устойчивость, сгибание, кручение;</p>
+                    <p>Значення в таблиці обраховані з врахуванням відходу на торцювання та різ</p>
 
                 </div>
             </div>

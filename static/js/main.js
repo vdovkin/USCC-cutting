@@ -14,6 +14,8 @@ const SHEETS = {
   40: [2000],
 }
 
+const form = document.getElementById("form");
+
 
 // Show thickness
 function showThickness(){
@@ -23,46 +25,36 @@ function showThickness(){
     thicknessSelect += `<option value='${t}'>${t}</option>`;
   }
   document.getElementById('thickness').innerHTML = thicknessSelect;
-
 }
 
 // Show available Width
 function availableWidth(){
   let sheetWidthArray = SHEETS[document.getElementById('thickness').value];
-  let sheetWidth;
+  let sheetWidth = '';
   for (w of sheetWidthArray){
-    sheetWidth += `<option value='${w}'>${w}</option>`;
+    if (sheetWidth == ''){
+      sheetWidth += `<input type="radio" id="${w}" value="${w}" name="sheet-width" checked> <label for="${w}">${w}</label>`;
+    } else {
+    sheetWidth += `<input type="radio" id="${w}" value="${w}" name="sheet-width"> <label for="${w}">${w}</label>`;
+    }
   }
   document.getElementById('sheetWidth').innerHTML = sheetWidth;
-}
-
-// Show card with Results
-function Results() {
   hideResults();
-  document.getElementById('loading').classList.remove('d-none');
-  let result = CalculateCutting();
-  result === true ? setTimeout(showResults, 500) : showError();
 }
 
-function showError(){
-  document.getElementById('loading').classList.add('d-none');
-  alert('Не коректні данні. Спробуйте ще раз');
-}
 
 function showResults(){
-  document.getElementById('loading').classList.add('d-none');
   const resultsUI = document.getElementById("results");
-  if (resultsUI.classList.contains("d-none")) {
-    resultsUI.classList.remove("d-none");
+  if (resultsUI.classList.contains("hide")) {
+    resultsUI.classList.remove("hide");
   }
 }
-
 
 // hide card with Results
 function hideResults(){
     const resultsUI = document.getElementById('results');
-    if (!resultsUI.classList.contains('d-none')){
-        resultsUI.classList.add('d-none');
+    if (!resultsUI.classList.contains('hide')){
+        resultsUI.classList.add('hide');
     }
 }
 
@@ -74,46 +66,91 @@ function numberWithComa(x) {
   return x.toString().replace('.', ",");
 }
 
+function showCutOptions(){
+  document.getElementById('tor').parentElement.classList.toggle('hide');
+  document.getElementById('riz').parentElement.classList.toggle('hide');
+  document.getElementById('tor-title').classList.toggle('hide');
+  document.getElementById('riz-title').classList.toggle('hide');
+}
 
-function CalculateCutting(){
+function showDelta(delta, sheetWidth){
+  let procent = numberWithComa(
+    Math.round(delta/(sheetWidth )*100 * 10 + Number.EPSILON ) / 10
+  )
+  let deltaText = `${delta}мм (${procent}%)`;
+  return deltaText;
+}
+
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  let width = parseInt(document.getElementById("width").value);
+  let thickness = parseInt(document.getElementById("thickness").value);
+  let sheetWidth = parseInt(document.querySelector('input[name="sheet-width"]:checked').value);
+  let cutWidth = parseInt(document.getElementById("riz").value);
+  let endCutWidth = parseInt(document.getElementById("tor").value);
+
+  console.log(width);
+  console.log(thickness);
+  console.log(sheetWidth);
+  console.log(cutWidth);
+  console.log(endCutWidth);
+
+  let widthNew = sheetWidth - endCutWidth*2;
+
+  let n = Math.floor(widthNew / (width + cutWidth));
+
+  let delta = widthNew - n * width - (n - 1) * cutWidth;
+
+
+document.getElementById("numberOfStrips").innerText = numberWithSpaces(
+  n
+);
+document.getElementById("waste").innerText = showDelta(
+  delta, sheetWidth
+);
+
+  showResults();
+
+});
+
+
+function CalculateCutting(e){
+  e.preventDefault();
   let width = parseInt(document.getElementById("width").value);
   let thickness = parseInt(document.getElementById("thickness").value);
   let sheetWidth = parseInt(document.getElementById("sheetWidth").value);
+  let cutWidth = parseInt(document.getElementById("riz").value);
+  let endCutWidth = parseInt(document.getElementById("tor").value);
 
-  if (!(width && thickness)){
-    return false;
-  } else if (width < 5 || width > 1995) {
-    return false;
-  } else if (thickness < 2 || thickness > 40) {
-    return false;
-  } else {
+  console.log(width);
+  console.log(thickness);
+  console.log(sheetWidth);
+  console.log(cutWidth);
+  console.log(endCutWidth);
 
-    let widthNew = sheetWidth - 5;
-    let cut = 2;
+    let widthNew = sheetWidth - endCutWidth*2;
 
-    if (thickness > 12) {
-      cut = 3;
-    }
+    let n = Math.floor(widthNew / (width + cutWidth));
 
-    let n = Math.floor(widthNew / (width + cut));
+    let delta = widthNew - n * width - (n - 1) * cutWidth + endCutWidth;
 
-    let delta = widthNew - n * width - (n - 1) * cut;
 
-  document.getElementById("cutNumber").innerText = numberWithSpaces(
+  document.getElementById("numberOfStrips").innerText = numberWithSpaces(
     n
   );
-  document.getElementById("deltaMM").innerText = numberWithSpaces(
+  document.getElementById("waste").innerText = numberWithSpaces(
     delta
   );
   document.getElementById("deltaRate").innerText = numberWithComa(
     Math.round(delta/(sheetWidth - 5)*100 * 10 + Number.EPSILON ) / 10
   );
 
+  showResults()
 
-    return true;
-  }
+  return false;
+  
 }
-
 
 showThickness();
 availableWidth();
