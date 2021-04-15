@@ -110,3 +110,20 @@ input[type="submit"] {
     color: #536279;
     text-align: center;
 }
+
+.subtitle{
+    background-color: white;
+    text-align: center;
+    padding-bottom: 15px;
+    text-transform: uppercase;
+    color: #536279;
+}
+
+.instructions{
+    line-height: 1.5;
+    color: #536279;
+}
+
+.title-block h1{
+    padding-bottom: 15px;
+}
