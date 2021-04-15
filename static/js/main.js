@@ -98,7 +98,7 @@ form.addEventListener("submit", function (e) {
 
   let widthNew = sheetWidth - endCutWidth*2;
 
-  let n = Math.floor(widthNew / (width + cutWidth));
+  let n = Math.floor(widthNew + cutWidth / (width + cutWidth));
 
   let delta = widthNew - n * width - (n - 1) * cutWidth;
 
