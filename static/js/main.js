@@ -98,7 +98,7 @@ form.addEventListener("submit", function (e) {
 
   let widthNew = sheetWidth - endCutWidth*2;
 
-  let n = Math.floor(widthNew + cutWidth / (width + cutWidth));
+  let n = Math.floor((widthNew + cutWidth) / (width + cutWidth));
 
   let delta = widthNew - n * width - (n - 1) * cutWidth;
 
@@ -115,42 +115,6 @@ document.getElementById("waste").innerText = showDelta(
 });
 
 
-function CalculateCutting(e){
-  e.preventDefault();
-  let width = parseInt(document.getElementById("width").value);
-  let thickness = parseInt(document.getElementById("thickness").value);
-  let sheetWidth = parseInt(document.getElementById("sheetWidth").value);
-  let cutWidth = parseInt(document.getElementById("riz").value);
-  let endCutWidth = parseInt(document.getElementById("tor").value);
-
-  console.log(width);
-  console.log(thickness);
-  console.log(sheetWidth);
-  console.log(cutWidth);
-  console.log(endCutWidth);
-
-    let widthNew = sheetWidth - endCutWidth*2;
-
-    let n = Math.floor(widthNew / (width + cutWidth));
-
-    let delta = widthNew - n * width - (n - 1) * cutWidth + endCutWidth;
-
-
-  document.getElementById("numberOfStrips").innerText = numberWithSpaces(
-    n
-  );
-  document.getElementById("waste").innerText = numberWithSpaces(
-    delta
-  );
-  document.getElementById("deltaRate").innerText = numberWithComa(
-    Math.round(delta/(sheetWidth - 5)*100 * 10 + Number.EPSILON ) / 10
-  );
-
-  showResults()
-
-  return false;
-  
-}
 
 showThickness();
 availableWidth();
