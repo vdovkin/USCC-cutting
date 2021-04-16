@@ -122,6 +122,7 @@ input[type="submit"] {
 .instructions{
     line-height: 1.5;
     color: #536279;
+    font-weight: 400;
 }
 
 .title-block h1{
